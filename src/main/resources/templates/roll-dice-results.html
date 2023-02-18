@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Roll Dice Result</title>
+</head>
+<body>
+<!--&lt is less than-->
+<!--&gt is greater than-->
+<h1 th:if="${guess &lt; 1 or guess &gt; 6}">Invalid guess: please choose a number between 1 and 6</h1>
+<h1 th:if="${guess == diceRoll}">Congrats you guessed correctly!</h1>
+<h1 th:if="${guess != diceRoll and guess &gt; 0 and guess &lt; 7}">Wrong!</h1>
+<h3>You guessed <span th:text="${guess}"></span></h3>
+<h3>The dice roll was a <span th:text="${diceRoll}"></span></h3>
+</body>
+</html>

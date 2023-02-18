@@ -2,19 +2,23 @@ package com.codeup.codeupspringblog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+
 
 @Controller
 public class PostController {
 
+
+
     @GetMapping("/posts")
     @ResponseBody
-    public String posts(){
+    public String postPage(){
         return "posts";
     }
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String id(@PathVariable int id){
-        return posts() + "{"+ id +"}";
+    public String postId(@PathVariable int id){
+        return postPage() + "/{"+ id +"}";
     }
 
     @GetMapping("/posts/create")
@@ -23,9 +27,10 @@ public class PostController {
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
+    @RequestMapping(path ="/posts/create" , method= RequestMethod.POST)
     @ResponseBody
     public String createPost(){
-        return null;
+        return "create a new post";
 }
+
 }

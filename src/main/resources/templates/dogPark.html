@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog Park</title>
+</head>
+<body>
+<ul>
+  <li th:each="dog : ${dogs}" th:text="${dog}"></li>
+</ul>
+<!--<h1 th:if="${true}">Render me this!</h1>-->
+
+<div th:fragment="my-partial">
+  partial content goes here...
+</div>
+
+</body>
+</html>
