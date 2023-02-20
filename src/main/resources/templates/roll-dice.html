@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Roll Dice</title>
+<!--    <title>Roll Dice</title>-->
+    <header th:replace="partials/head:: head"></header>
+
+
 </head>
+
 <body>
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1>Guess a number between 1 and 6:</h1>
 <ul>
@@ -16,7 +21,10 @@
     <li><a href="/roll-dice/5">5</a></li>
     <li><a href="/roll-dice/6">6</a></li>
 </ul>
-<!--<footer th:replace="partials/footer :: footer"></footer>-->
+
+<footer th:replace="partials/footer :: footer"></footer>
+
+
 
 </body>
 </html>
