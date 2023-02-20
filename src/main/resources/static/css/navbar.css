@@ -1,0 +1,19 @@
+.dice-container {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+
+.dice {
+    display: inline-block;
+    list-style: none;
+    font-size: 7em;
+    margin: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
