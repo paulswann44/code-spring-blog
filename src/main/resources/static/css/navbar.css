@@ -1,19 +1,23 @@
+
+
 .dice-container {
-    text-align: center;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: row;
 }
 
-
 .dice {
-    display: inline-block;
-    list-style: none;
-    font-size: 7em;
+    display: flex;
+    background-color: lightblue;
+    font-size: 2em;
+    width: 5em;
+    height: 5em;
     margin: 10px;
 }
-
 a{
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 

@@ -16,14 +16,24 @@
 <h1>Guess a number between 1 and 6:</h1>
 <div class="dice-container">
 <ul>
-    <li class="dice"><a href="/roll-dice/1">1</a></li>
-    <li class="dice"><a href="/roll-dice/2">2</a></li>
-    <li class="dice"><a href="/roll-dice/3">3</a></li>
-    <li class="dice"><a href="/roll-dice/4">4</a></li>
-    <li class="dice"><a href="/roll-dice/5">5</a></li>
-    <li class="dice"><a href="/roll-dice/6">6</a></li>
+<!--    We do not need the th:href, but it is for practice-->
+    <div class="dice"><a th:href="@{/roll-dice/1}">1</a></div>
+    <div class="dice"><a th:href="@{/roll-dice/2}">2</a></div>
+    <div class="dice"><a th:href="@{/roll-dice/3}">3</a></div>
+    <div class="dice"><a th:href="@{/roll-dice/4}">4</a></div>
+    <div class="dice"><a th:href="@{/roll-dice/5}">5</a></div>
+    <div class="dice"><a th:href="@{/roll-dice/6}">6</a></div>
 </ul>
 </div>
+
+
+<p th:if= "${randomNum != null}" th:text = "${'Random number'+ randomNum}"></p>
+
+
+<p th:if="${result != null && result}" >You are correct</p>
+<p th:if="${result != null && !result}" >Incorrect</p>
+
+
 
 <footer th:replace="partials/footer :: footer"></footer>
 
