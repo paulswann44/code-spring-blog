@@ -1,29 +1,37 @@
 package com.codeup.codeupspringblog.models;
 
-
-import com.mysql.cj.protocol.ColumnDefinition;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ad_images")
-public class AdImages {
-    @Id //establish primary key
-    //Auto increment
+public class AdImage {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(columnDefinition = "TEXT")
     private String imageURL;
 
     @ManyToOne
-    @JoinColumn(name = "ad_ad")
+//    @JoinColumn(name = "ad_id")
     private Ad ad;
 
-    public AdImages(long id, String imageURL) {
-        this.id = id;
+    public AdImage(){}
+
+    public AdImage(String imageURL, Ad ad) {
+        this.imageURL = imageURL;
+        this.ad = ad;
+    }
+
+    public AdImage(String imageURL) {
         this.imageURL = imageURL;
     }
 
-    public AdImages() {
+    public Ad getAd() {
+        return ad;
+    }
+
+    public void setAd(Ad ad) {
+        this.ad = ad;
     }
 
     public long getId() {

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>Create Post</title>
+    <title>Create</title>
 </head>
 <body>
-<form method="POST" action="/post/create">
-  <h1>Create New Post</h1>
-  <label for="title"> Title:</label>
-  <input type="text" name="title" id="title">
-  <label for="body">Body:</label>
-  <textarea name="body" id="body" cols="20" rows="10"></textarea>
-  <button type="submit">Create Post</button>
+<form method="POST" action="/posts/create">
+    <h1>Create New Post</h1>
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title">
+    <label for="body">Body: </label>
+    <textarea id="body" name="body" rows="10" cols="20"></textarea>
+    <button type="submit">Create Post</button>
 
 </form>
-
 </body>
 </html>

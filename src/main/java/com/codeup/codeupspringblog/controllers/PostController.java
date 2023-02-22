@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.repositories.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -11,9 +12,12 @@ import org.springframework.ui.Model;
 // This is the PostController class that handles all the HTTP requests related to posts.
 @Controller
 public class PostController {
-
     // This is a private field of PostRepository type that is used to access the post data from the database.
     private PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
 
     // This method maps the HTTP GET request to the "/posts" URL and returns the view with all the posts.
     @GetMapping("/posts")

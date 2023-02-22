@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ads</title>
+</head>
+<body>
+<h1>Here are all the ads: </h1>
+<div th:each="ad : ${ads}">
+    <img th:each="image : ${ad.getImages()}" th:src="@{${image.imageURL}}" alt="ad image" />
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
+</div>
+</body>
+</html>

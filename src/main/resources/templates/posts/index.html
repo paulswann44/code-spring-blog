@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>All Posts</title>
 </head>
 <body>
-<h1>Here are all the posts:</h1>
-<!-- Use Thymeleaf to iterate through the list of posts and display them in the HTML file -->
-<div th:each=" post: ${allPosts}">
-    <!-- Display the post title as a link to the post detail page using the post id as a URL parameter -->
-    <h3><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a></h3>
 
+<h1>Here are all the posts: </h1>
+<div th:each="post : ${allPosts}">
+    <h1 th:text="${post.title}"></h1>
+    <p th:text="${post.body}"></p>
 </div>
+
 </body>
 </html>
