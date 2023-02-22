@@ -2,6 +2,8 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="ads")
 public class Ad {
@@ -15,8 +17,19 @@ public class Ad {
     @Column(nullable = false)
     private String description;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ad" )
+    private List<AdImages> images;
+
 
     public Ad() {
+    }
+
+    public List<AdImages> getImages() {
+        return images;
+    }
+
+    public void setImages(List<AdImages> images) {
+        this.images = images;
     }
 
     public Ad(long id, String title, String description) {
