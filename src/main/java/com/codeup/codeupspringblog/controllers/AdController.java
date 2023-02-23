@@ -1,8 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.repositories.AdRepository;
 import com.codeup.codeupspringblog.models.Ad;
 import com.codeup.codeupspringblog.models.AdImage;
+import com.codeup.codeupspringblog.repositories.AdRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @Controller
 public class AdController {
     // These two next steps are often called dependency injection, where we create a Repository instance and initialize it in the controller class constructor.
-    private AdRepository adDao;
+    private final AdRepository adDao;
 
     public AdController(AdRepository adDao) {
         this.adDao = adDao;
@@ -53,19 +54,28 @@ public class AdController {
     }
 
     @GetMapping("/ads/create")
-    public String adCreateForm(){
+    public String adCreateForm(Model model){
+        model.addAttribute("newAd", new Ad());
         return "ads/create";
     }
 
     @PostMapping(path = "/ads/create")
-    public String adCreateSubmit(@RequestParam String title, @RequestParam String description){
-        Ad newAd = new Ad(title, description);
-
-        adDao.save(newAd);
-
+    public String adCreateSubmit(@ModelAttribute Ad ad){
+        adDao.save(ad);
         return "redirect:/ads";
     }
 
+    @GetMapping("/ads/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("ad", adDao.findById(id).get());
+        return "ads/edit";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String editAd(@PathVariable long id, @ModelAttribute Ad ad) {
+        adDao.save(ad);
+        return "redirect:/ads";
+    }
 
 
 

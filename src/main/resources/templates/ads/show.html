@@ -8,8 +8,9 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1 th:text="${post.title}"></h1>
-      <p th:text="${post.body}"></p>
+      <img th:each="image : ${ad.images}" th:src="@{${image.imageURL}}">
+      <h1 th:text="${ad.title}"></h1>
+      <p th:text="${ad.description}"></p>
     </div>
   </div>
 </div>
