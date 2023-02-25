@@ -1,12 +1,19 @@
 
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ad Description Page</title>
+    <title>Ads</title>
+    <th:block th:include="partials/partials.html :: styles"></th:block>
 </head>
 <body>
-<h1>This is the show page for  <span th:text="${title}">World</span>!</h1>
-
+<nav th:replace="partials/partials.html :: navbar"></nav>
+<h1>Here are all the ads: </h1>
+<div th:each="ad : ${ads}">
+    <img th:each="image : ${ad.getImages()}" th:src="@{${image.imageURL}}" alt="ad image" />
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
+</div>
 </body>
 </html>

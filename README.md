@@ -14,6 +14,7 @@ Technologies involved
 - BootStrap 5
 - Javascript
 - Bootstrap 5
+- SendGrid API
 - Spring Boot 3.0.2
   - Tomcat
   - Spring JPS

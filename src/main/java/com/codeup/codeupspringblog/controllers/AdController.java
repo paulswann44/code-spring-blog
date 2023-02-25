@@ -3,7 +3,8 @@ package com.codeup.codeupspringblog.controllers;
 import com.codeup.codeupspringblog.models.Ad;
 import com.codeup.codeupspringblog.models.AdImage;
 import com.codeup.codeupspringblog.repositories.AdRepository;
-
+import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,13 @@ import java.util.List;
 public class AdController {
     // These two next steps are often called dependency injection, where we create a Repository instance and initialize it in the controller class constructor.
     private final AdRepository adDao;
+    private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public AdController(AdRepository adDao) {
+    public AdController(AdRepository adDao, UserRepository userDao, EmailService emailService) {
         this.adDao = adDao;
+        this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/ads")
@@ -61,6 +66,7 @@ public class AdController {
 
     @PostMapping(path = "/ads/create")
     public String adCreateSubmit(@ModelAttribute Ad ad){
+        ad.setOwner(userDao.findById(1L).get());
         adDao.save(ad);
         return "redirect:/ads";
     }

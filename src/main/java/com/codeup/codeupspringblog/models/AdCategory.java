@@ -5,12 +5,10 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="categories")
-
+@Table(name = "categories")
 public class AdCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
     @Column(length = 100)
     private String name;
@@ -18,11 +16,9 @@ public class AdCategory {
     @ManyToMany(mappedBy = "categories")
     private List<Ad> ads;
 
-    public AdCategory() {
-    }
+    public AdCategory(){};
 
-    public AdCategory(long id, String name, List<Ad> ads) {
-        this.id = id;
+    public AdCategory(String name, List<Ad> ads) {
         this.name = name;
         this.ads = ads;
     }
@@ -50,6 +46,4 @@ public class AdCategory {
     public void setAds(List<Ad> ads) {
         this.ads = ads;
     }
-
-
 }

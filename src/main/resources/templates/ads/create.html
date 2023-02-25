@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,6 +14,10 @@
   <label for="description">Description: </label>
   <textarea id="description" th:field="*{description}" rows="10" cols="20"></textarea>
   <button type="submit">Create Post</button>
+</form>
+
+<form th:action="@{/logout}" th:method="POST">
+  <button type="submit">Logout</button>
 </form>
 </body>
 </html>
