@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.User;
 
+import com.codeup.codeupspringblog.services.UserDaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
