@@ -14,10 +14,13 @@ import java.util.List;
 
 @Controller
 public class AdController {
+    //Dependency Injection via fields, but it has to be private and final form immutability purposes
+
     private final AdRepository adDao;
     private final UserRepository userDao;
     private final EmailService emailService;
 
+    //Dependency Injection via constructor
     public AdController(AdRepository adDao, UserRepository userDao, EmailService emailService) {
         this.adDao = adDao;
         this.userDao = userDao;
@@ -26,7 +29,7 @@ public class AdController {
 
     @GetMapping("/ads")
     public String index(Model model) {
-        model.addAttribute("ads", adDao.findAll());
+        model.addAttribute("ads", adDao.findAll());  //<--[dependency injection and use of interface method]
         return "ads/ad";
     }
 
@@ -45,7 +48,6 @@ public class AdController {
         if(ad.getImages().isEmpty()) {
             // create new list of AdImage objects to assign to the Ad
             List<AdImage> images = new ArrayList<>();
-            //
             images.add(new AdImage("https://via.placeholder.com/150", ad));
 
             ad.setImages(images);

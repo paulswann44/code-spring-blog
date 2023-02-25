@@ -10,8 +10,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
+<!-- @{${image.imageURL}} => essentially the URL Link-->
       <img th:each="image : ${ad.images}" th:src="@{${image.imageURL}}">
+<!-- ${} -This gets the dynamic title-->
       <h1 th:text="${ad.title}"></h1>
+<!--${} this gets the dynamic description -->
       <p th:text="${ad.description}"></p>
     </div>
   </div>
