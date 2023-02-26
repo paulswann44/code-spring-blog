@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title></title>
+</head>
+<body>
+<h1>Here are all the books:</h1>
+<form th:action="@{/logout}" th:method="post">
+  <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+</form>
+<div th:each="book : ${allBooks}">
+  <h3><a th:href="@{/books/{id} (id = ${book.id})}" th:text="${book.title}"></a></h3>
+</div>
+</body>
+</html>

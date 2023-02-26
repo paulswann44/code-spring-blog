@@ -27,6 +27,7 @@ public class User {
 
     public User() {};
 
+    //copy constructor
     public User(User copy) {
         id = copy.id;
         email = copy.email;
