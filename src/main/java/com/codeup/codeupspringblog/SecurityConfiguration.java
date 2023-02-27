@@ -11,73 +11,64 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
-
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
+// allow security for application
 
-        private UserDetailsLoader usersLoader;
+    // Fetch user from DB checks against DB and assigns roles
+    private UserDetailsLoader usersLoader;
 
-
-        public SecurityConfiguration(UserDetailsLoader usersLoader) {
-            this.usersLoader = usersLoader;
-        }
-
-        @Bean
-        //This hashes and decodes our password
-        public PasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-
-        @Bean
-        //manage our AuthenticationManager and checks against the database
-        public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-            return authenticationConfiguration.getAuthenticationManager();
-        }
-
-        @Bean
-
-        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http
-                    /* Login configuration */
-                    //Lets us use this login page and if successful it lets ut go to the ads page
-                    .formLogin()
-                    .loginPage("/login")
-
-                    //CHECK WITH JAY ABOUT BOOKS
-//                    .defaultSuccessUrl("/ads")
-                    .defaultSuccessUrl("/books")
-                    .permitAll()
-
-
-                    /* Logout configuration */
-                    .and()
-                    .logout()
-                    //redirect to home.  As of now, this is broken due to Spring Boot update
-                    .logoutSuccessUrl("/")
-
-
-
-                    /* Pages that can be viewed without having to log in */
-                    .and()
-                    .authorizeHttpRequests()
-
-                    .requestMatchers("/", "/books", "/sign-up")
-                    .permitAll()
-                    /* Pages that require authentication */
-                    .and()
-                    .authorizeHttpRequests()
-                    .requestMatchers(
-                            "/books/create", // only authenticated users can create ads
-                            "/books/{id}/edit", // only authenticated users can edit ads
-                            "/posts/create",
-                            "/posts/**" //"**" anything after post is required to authenticate
-                    )
-                    .authenticated()
-            ;
-            return http.build();
-        }
-
+    public SecurityConfiguration(UserDetailsLoader usersLoader) {
+        this.usersLoader = usersLoader;
     }
 
 
+    // Hash passwords
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+//                .csrf().disable()
+                /* Login configuration */
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
+                .permitAll() // Anyone can go to the login page
+
+
+                /* Logout configuration */
+                .and()
+                .logout()
+                .logoutSuccessUrl("/") // append a query string value
+                /* Pages that can be viewed without having to log in */
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/", "/ads", "/posts","/sign-up") // anyone can see the home and the ads pages
+                .permitAll()
+                /* Pages that require authentication */
+                .and()
+                .authorizeHttpRequests()
+
+                //
+                .requestMatchers(
+                        "/posts/**", // only authenticated users can create ads
+                        "/ads/**", // only authenticated users can edit ads
+                        "/ads/create"
+                )
+                // These mappings need to be authenticated
+                .authenticated();
+        return http.build();
+    }
+}

@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import jakarta.persistence.*;
 
 import java.util.List;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,7 +26,6 @@ public class User {
 
     public User() {};
 
-    //copy constructor
     public User(User copy) {
         id = copy.id;
         email = copy.email;

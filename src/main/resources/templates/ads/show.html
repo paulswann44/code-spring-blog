@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Individual Post</title>
-  <th:block th:include="partials/partials.html :: styles"></th:block>
+    <meta charset="UTF-8"/>
+    <title>Edit Ad</title>
 </head>
 <body>
-<nav th:replace="partials/partials.html :: navbar"></nav>
-<div class="container">
-  <div class="row">
-    <div class="col">
-<!-- @{${image.imageURL}} => essentially the URL Link-->
-      <img th:each="image : ${ad.images}" th:src="@{${image.imageURL}}">
-<!-- ${} -This gets the dynamic title-->
-      <h1 th:text="${ad.title}"></h1>
-<!--${} this gets the dynamic description -->
-      <p th:text="${ad.description}"></p>
-    </div>
-  </div>
-</div>
-
+<form th:method="POST" th:action="@{/ads/{id}/edit (id = ${ad.id})}" th:object="${ad}">
+    <h1>Edit Ad</h1>
+    <label for="title">Title: </label>
+    <input type="text" th:field="*{title}" id="title">
+    <label for="description">Description: </label>
+    <textarea id="description" th:field="*{description}" rows="10" cols="20"></textarea>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

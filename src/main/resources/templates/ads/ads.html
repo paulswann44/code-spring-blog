@@ -1,22 +1,17 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ads</title>
-    <!-- Include the styles from the partials file -->
-    <th:block th:include="partials/partials.html :: styles"></th:block>
+<!--    <th:block th:include="partials/partials.html :: styles"></th:block>-->
 </head>
 <body>
-<!-- Include the navbar from the partials file -->
-<nav th:replace="partials/partials.html :: navbar"></nav>
+<!--<nav th:replace="partials/partials.html :: navbar"></nav>-->
 <h1>Here are all the ads: </h1>
-<!-- Loop through each ad in the list of ads -->
 <div th:each="ad : ${ads}">
-    <!-- Loop through each image in the ad's images list and display it -->
     <img th:each="image : ${ad.getImages()}" th:src="@{${image.imageURL}}" alt="ad image" />
-    <!-- Display the ad's title -->
     <h1 th:text="${ad.title}"></h1>
-    <!-- Display the ad's description -->
     <p th:text="${ad.description}"></p>
 </div>
 </body>

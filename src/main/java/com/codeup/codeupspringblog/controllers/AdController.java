@@ -4,7 +4,7 @@ import com.codeup.codeupspringblog.models.Ad;
 import com.codeup.codeupspringblog.models.AdImage;
 import com.codeup.codeupspringblog.repositories.AdRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
-import com.codeup.codeupspringblog.services.EmailService;
+//import com.codeup.codeupspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +14,21 @@ import java.util.List;
 
 @Controller
 public class AdController {
-    //Dependency Injection via fields, but it has to be private and final form immutability purposes
-
+    // These two next steps are often called dependency injection, where we create a Repository instance and initialize it in the controller class constructor.
     private final AdRepository adDao;
     private final UserRepository userDao;
-    private final EmailService emailService;
+//    private final EmailService emailService;
 
-    //Dependency Injection via constructor
-    public AdController(AdRepository adDao, UserRepository userDao, EmailService emailService) {
+    public AdController(AdRepository adDao, UserRepository userDao) {
         this.adDao = adDao;
         this.userDao = userDao;
-        this.emailService = emailService;
+//        this.emailService = emailService;
     }
 
     @GetMapping("/ads")
     public String index(Model model) {
-        model.addAttribute("ads", adDao.findAll());  //<--[dependency injection and use of interface method]
-        return "ads/ad";
+        model.addAttribute("ads", adDao.findAll());
+        return "ads/ads";
     }
 
     @GetMapping("/ads/by/{title}")
@@ -48,6 +46,7 @@ public class AdController {
         if(ad.getImages().isEmpty()) {
             // create new list of AdImage objects to assign to the Ad
             List<AdImage> images = new ArrayList<>();
+            //
             images.add(new AdImage("https://via.placeholder.com/150", ad));
 
             ad.setImages(images);
