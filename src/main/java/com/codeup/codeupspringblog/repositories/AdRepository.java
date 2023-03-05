@@ -13,3 +13,4 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
 }
 
 
+//https://www.geeksforgeeks.org/spring-boot-crudrepository-with-example/
