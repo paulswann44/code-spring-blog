@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Log In</title>
+  <header th:replace="partials/head:: head"></header>
+
+  <link href="css/navbar.css" rel="stylesheet">
+
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <h1>Log In</h1>
 <div th:if="${param.error}">
   Invalid Username and Password.
@@ -22,3 +28,11 @@
 </form>
 </body>
 </html>
+
+
+
+
+</head>
+
+<body>
+
