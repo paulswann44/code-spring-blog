@@ -7,4 +7,3 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }
 
-//https://www.geeksforgeeks.org/spring-boot-crudrepository-with-example/
